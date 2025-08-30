@@ -1,6 +1,9 @@
- import {  useState } from 'react';
- import './styles.css'
+import {  useState ,useEffect} from 'react';
+import './styles.css'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { linearProgressClasses } from '@mui/material';
+
 
 
  export default function SignUp(){
@@ -16,6 +19,9 @@ import axios from 'axios';
 
     let [firstSubmit , setfirstSubmit] = useState(false)
     
+
+
+
     const submit = async(e)=>{
         setfirstSubmit(true)
         e.preventDefault() ; 
@@ -34,40 +40,64 @@ import axios from 'axios';
                 flag: false , 
                 message: ''
             })
-            console.log(res)
+            if(res.status = 200){
+                localStorage.setItem('token' , res.token)
+                window.location.pathname='/'
+            }
         } catch (err) {
             if(err.response.data.message){
                 setError({
                     flag: true , 
                     message: err.response.data.message 
-                })
+                }) 
+                return
             }
-           
+            setError({
+                flag: true , 
+                message: 'network err' 
+            })
         }
         
     }
 
     return (
-        <div className='signUpFormHolder'>
-            <form action="" className='signUpForm' onSubmit={submit}>
-
-                <label htmlFor="name">Name:</label>
-                <input type="text" value={name} name="name" placeholder='enter ur name' onChange={(e)=>{setName(e.target.value)}} />
+        <div className='FormHolder'>
+            <form action="" className='Form' onSubmit={submit}>
+                <header>
+                    <h2>Sign UP</h2>
+                </header>
+                <div className="input-container">
+                    <input type="text" value={name} name="name"  onChange={(e)=>{setName(e.target.value)}} />
+                    <label htmlFor="name">Name:</label>
+                </div>
+            
                 {firstSubmit && name === "" && <p className='warningP'>username is required</p>}
 
-                <label htmlFor="email">Email:</label>
-                <input type="email" value={email} name="email" placeholder='enter ur email' onChange={(e)=>{setEmail(e.target.value)}} required/>
+                <div className="input-container">
+                   <input type="email" value={email} name="email"  onChange={(e)=>{setEmail(e.target.value)}} required/>
+                   <label htmlFor="email">Email:</label>
+                </div>
+                {error.flag && <p className='warningP'>{error.message}</p>}
 
-                <label htmlFor="password ">Password: </label>
-                <input type="password" value={pass} name="password" placeholder='enter ur password' onChange={(e)=>{setPass(e.target.value)}} required/>
+                <div className="input-container">
+                    <input type="password" value={pass} name="password"  onChange={(e)=>{setPass(e.target.value)}} required/>
+                    <label htmlFor="password ">Password: </label>
+                </div>
                 {firstSubmit && pass.length<8 && <p className='warningP'>password must be more than 8 chars</p>}
-
-                <label htmlFor="password ">Repeat password: </label>
-                <input type="password" value={rPass} name="password" placeholder='rewrite the password'onChange={(e)=>{setRPass(e.target.value)}} required/>
+                
+                <div className="input-container">
+                    <input type="password" value={rPass} name="password" onChange={(e)=>{setRPass(e.target.value)}} required/>
+                    <label htmlFor="password ">Repeat password: </label>
+                </div>
                 {firstSubmit && pass !== rPass && <p className='warningP'>passwords doesn't match</p>}
                 
                 <button type='submit' >Register</button>
-                {error.flag && <p className='warningP'>{error.message}</p>}
+
+                <div>
+                    <Link to={'/login'}>
+                        <p>do you have an account ? </p>
+                    </Link>
+                </div>
 
             </form>
         </div>
