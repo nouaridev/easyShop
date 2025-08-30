@@ -13,34 +13,34 @@ export default function LogIn(){
     }, [token])
 
     const submit = async(e)=>{
-    setfirstSubmit(true)
-    e.preventDefault() ; 
-    
-    try {
-        let res = await axios.post('http://127.0.0.1:8000/api/register', {     
-             email , password: pass 
-        }) ;    
-        res = res.data.data ;
-        setError({
-            flag: false , 
-            message: ''
-        })
-        setToken(res.token)
-        console.log(res)
-    } catch (err) {
-        if(err.response.data.message){
+        e.preventDefault() ; 
+        console.log('ssssssss')
+        try {
+            let res = await axios.post('http://127.0.0.1:8000/api/login', {     
+                email , password: pass 
+            }) ;    
+            res = res.data.data ;
+            setError({
+                flag: false , 
+                message: ''
+            })
+            if(res.status = 200){
+                localStorage.setItem('token' , res.token)
+                window.location.pathname='/'
+            }
+        } catch (err) {
+            if(err.response.data.message){
+                setError({
+                    flag: true , 
+                    message: err.response.data.message  
+                })
+                return ; 
+            }
             setError({
                 flag: true , 
-                message: err.response.data.message  
+                message: 'unchecked error'
             })
-            return ; 
         }
-        setError({
-            flag: true , 
-            message: 'unchecked error'
-        })
-    }
-    
     }
 
     let [error , setError] = useState({
@@ -66,7 +66,7 @@ export default function LogIn(){
                     <label htmlFor="password ">Password: </label>
                 </div>
 
-                <button type='submit' >login</button>
+                <button type='submit'>login</button>
 
                 <div>
                     <Link to={'/signup'}>

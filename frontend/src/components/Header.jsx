@@ -8,24 +8,20 @@ export default function Header(){
         }
     },[])
 
-    const logOut = (e)=>{
+    const HandleLogOut = (e)=>{
         e.preventDefault();
         localStorage.removeItem('token')
         setToken(null)
     }
     return (
         <div className="header">
-            <div className="left">
-                <img src="../../public/LOGO.png" alt="" />
-            </div>
             <div className="links">
                 <Link className="link">Home</Link>
                 <Link className="link">about</Link>
                 <Link className="link">cart</Link>
             </div>
             <div className="right">
-                {!token && <><Link to={'/login'}>Login</Link>  <Link to={'/signup'}>SignUp</Link></>}  
-                {token && <Link to={'/login'} className="logout" onClick={(e)=>{logOut(e)}}>logOut</Link>}
+                {!token ? <><Link to={'/login'}>Login</Link>  <Link to={'/signup'}>SignUp</Link></> : <Link to={'/login'} className="logout" onClick={(e)=>{HandleLogOut(e)}}>logOut</Link>}
             </div>
         </div>
     );
