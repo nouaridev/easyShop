@@ -1,15 +1,4 @@
-    :root{
-        --primary-text: rgb(35, 35, 35) ; 
-        --secondary-text: rgb(106, 106, 106); 
-        --card-shadow: 0 0 5px 0px rgba(106, 106, 106, 0.34); 
-        --card-shadow-hover:0 0 10px 0px rgba(106, 106, 106, 0.34); 
-        --sky-blue: rgb(136, 196, 251);
-        --sky-blue-bold: rgb(86, 173, 255);
-        --sky-blue-light: rgb(198, 224, 251);
-        --sky-blue-lighter-bg: rgba(214, 229, 245, 0.119);
-        --red-error: rgb(245, 83, 83); 
-    }
-    
+     
     /* Global Css */
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
     *{
@@ -19,8 +8,18 @@
         font-family: "Cairo", sans-serif;
     }
 
-
-
+    :root{
+            --primary-text: rgb(35, 35, 35) ;   
+            --secondary-text: rgb(106, 106, 106); 
+            --card-shadow: 0 0 5px 0px rgba(106, 106, 106, 0.34); 
+            --card-shadow-hover:0 0 10px 0px rgba(106, 106, 106, 0.34); 
+            --sky-blue: rgb(136, 196, 251);
+            --sky-blue-bold: rgb(86, 173, 255);
+            --sky-blue-light: rgb(198, 224, 251);
+            --sky-blue-lighter-bg: rgba(214, 229, 245, 0.119);
+            --red-error: rgb(245, 83, 83); 
+    }
+  
 /* signUp && login*/
     .FormHolder{
         display:  flex;
@@ -118,7 +117,7 @@
         margin: 20px 0 ; 
     }
 
-    .FormHolder .warningP{
+   .warningP{
         color: var(--red-error);
         font-size: 12px;
         padding:  5px 0;
@@ -192,3 +191,59 @@
         cursor: pointer ;
     }
 /*=>>end header */
+
+/* frame work */
+    .d-flex{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .container{
+        max-width: 1100px;
+        margin: auto;
+    }
+    .p20{
+        padding: 20px;
+    }
+    .blueBtn {
+        text-decoration: none;
+        padding: 10px;
+        border-radius: 5px;
+        outline: 0;
+        border: 0;
+        border: 2px solid var(--sky-blue-bold);
+        color: var(--sky-blue-bold);
+        margin: 0 5px ; 
+    }
+    .blueBtn:hover{
+        background-color: var(--sky-blue-bold);
+        color: white;
+        cursor: pointer ;
+    }
+/*==> frame work */
+/* inputs*/
+        .input-group{
+                position: relative;
+                margin-top: 15px ;
+            }
+           .input-group label{
+                position: absolute;
+                top: -15px;
+                left: 10px;
+                padding:0 5px  ; 
+                background-color: #eee;
+                color: var(--sky-blue-bold);
+
+                font-weight: bold;
+            }
+            .input-group input{
+                width: 300px;
+                outline: none;
+                border: 1px solid var(--sky-blue-bold);
+                border-radius: 9px;
+                padding: 10px;
+                
+                background-color: #eee;
+                color: var(--primary-text)
+            }
+/*==> inputs*/

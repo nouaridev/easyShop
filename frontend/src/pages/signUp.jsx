@@ -1,8 +1,8 @@
 import {  useState ,useEffect} from 'react';
-import './styles.css'
+import '../styles.css'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { linearProgressClasses } from '@mui/material';
+
 
 
 

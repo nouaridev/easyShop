@@ -1,0 +1,177 @@
+    :root{
+            --primary-text: rgb(35, 35, 35) ;   
+            --secondary-text: rgb(106, 106, 106); 
+            --card-shadow: 0 0 5px 0px rgba(106, 106, 106, 0.34); 
+            --card-shadow-hover:0 0 10px 0px rgba(106, 106, 106, 0.34); 
+            --sky-blue: rgb(136, 196, 251);
+            --sky-blue-bold: rgb(86, 173, 255);
+            --sky-blue-light: rgb(198, 224, 251);
+            --sky-blue-lighter-bg: rgba(214, 229, 245, 0.119);
+            --red-error: rgb(245, 83, 83); 
+    }
+
+
+
+/* top bar  */
+    .dashboard .top-bar{
+        box-shadow: 0px 1px 10px 1px #aaa ;
+    }
+/* top bar  */
+
+/* side bar*/
+    .dashboard .side-bar{
+        width: 200px;
+        height: calc(100vh - 100px);
+        padding: 20px;
+        border-right: 1px solid #aaa; 
+    }
+    
+    .dashboard .item-link{
+        color: var(--primary-text);
+        background-color: var(--sky-blue-light);
+        text-decoration: none; 
+        font-size: 18px;
+        font-weight:  bold; 
+        text-align: center ;
+
+        cursor: pointer;
+        
+        display: block;
+        width: 100%;
+        padding: 15px ; 
+        border-radius: 9px;
+
+        transition: all 0.1s ease;
+    }
+    .dashboard .item-link:hover{
+        background-color: var(--sky-blue-bold);
+        color: #eee;
+    }
+    /* side bar*/
+
+/* content */
+    .dashboard .content{
+        width: calc(100vw - 200px);
+        height: calc(100vh - 100px);
+        overflow-y: auto;
+    }
+
+    /* table */
+        .dashboard table{
+            border-collapse: collapse ;
+            width: 100%;
+            table-layout: fixed;
+            text-align: center ;
+            
+        }
+        .dashboard table thead{
+            background-color: var(--sky-blue-bold);
+            color: #eee ;
+        }
+        .dashboard table thead th{
+            border: 1px solid var(--sky-blue-light);
+            font-weight: bold;
+        }
+        .dashboard table tr{
+            border-bottom: 1px solid var(--sky-blue-light) ; 
+          
+        }   
+        .dashboard table tr:hover {
+            background-color: var(--sky-blue-light);
+        }
+        
+        .dashboard table td{
+            padding: 20px;
+            background-color: var(--sky-blue-lighter-bg); 
+            border: 1px solid var(--sky-blue-bold) ; 
+            color: var(--primary-text); 
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .dashboard table td:hover{
+            white-space: nowrap;
+            overflow: auto;
+            text-overflow: clip;
+            scrollbar-width: thin;
+        }
+        
+        .dashboard table td .action-btn:nth-child(1){
+            margin-right: 10px;
+        }
+        .dashboard table td .action-btn{
+            display: inline-block;
+            padding: 10px;
+            border-radius: 9px;
+            background-color: #eee;
+            cursor: pointer;
+        }
+        .dashboard table td .action-btn:hover{
+            background-color: #f0e7e7;
+            cursor: pointer;
+        }
+
+
+        .dashboard table td .action-btn .del{
+            color: var(--red-error);
+        }
+        .dashboard table td .action-btn .edt{
+            color: var(--sky-blue-bold);
+        }
+        
+        /* EditUser */
+            .dashboard .edit-user{
+                z-index: 100;
+                width: 100vw ;
+                height: 100vh;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: rgba(6, 5, 5, 0.34);
+            }
+            .dashboard .edit-user .form-holder{
+                position: relative;
+                width: 100vw;
+                height: 100vh;
+            }
+            .dashboard .edit-user .form-holder form{
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50% , -50%);
+                padding: 20px;
+                background-color: #eee;
+                border-radius: 9px;
+            }
+            .dashboard .edit-user .form-holder form h1{
+                color: var(--sky-blue-bold);
+                text-align: center;
+                padding:0 0 30px 0 ;
+            }
+     
+            .dashboard .edit-user .form-holder form .actions{
+                padding-top: 10px;
+                display: flex;
+            }
+            .dashboard .edit-user .form-holder form .actions .blueBtn{
+                background-color: var(--sky-blue-bold);
+                color: white; 
+            }
+            .dashboard .edit-user .form-holder form .actions .blueBtn:hover{
+                background-color: var(--sky-blue);
+                border: 2px solid var(--sky-blue);
+            }
+            .dashboard .edit-user .form-holder form .actions .cancel{
+                background-color: #eee;
+                color: var(--sky-blue-bold) ;
+                border: 2px solid var(--sky-blue)
+            }
+            .dashboard .edit-user .form-holder form .actions .cancel:hover{
+                background-color: var(--sky-blue-light);
+            }
+            /* EditUser */
+        
+    /* table */
+
+
+/* content */

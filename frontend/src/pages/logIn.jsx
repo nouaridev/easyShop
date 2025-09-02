@@ -1,4 +1,4 @@
-import './styles.css'
+import '../styles.css'
 import {  useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -15,7 +15,7 @@ export default function LogIn(){
     const submit = async(e)=>{
         e.preventDefault() ; 
         console.log('ssssssss')
-        try {
+        try { 
             let res = await axios.post('http://127.0.0.1:8000/api/login', {     
                 email , password: pass 
             }) ;    
