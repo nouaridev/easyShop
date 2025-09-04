@@ -4,20 +4,20 @@ import {Route ,Routes } from 'react-router-dom'
 import SignUp from './pages/signUp'
 import LogIn from './pages/logIn'
 import IndexPage from './pages/indexPage'
-import Dashboard from './pages/dashboard'
 import Home from './pages/Home'
-import Users from './components/users'
-import EditUser from './components/EditUser'
 
-// components : 
+// dashboard
+import Dashboard from './pages/dashboard'
+  // users 
+    import Users from './components/dashboard/users/users'
+    import EditUser from './components/dashboard/users/EditUser'
+    import CreateUser from './components/dashboard/users/createUser'
 
 
 function App() {
 
   return (
     <>
-      {/* router */}
-
       <Routes>
         <Route path='/' element={<IndexPage/>}></Route>
         <Route path='/login' element={<LogIn/>}></Route>
@@ -25,6 +25,7 @@ function App() {
         <Route path='/dashboard' element={<Dashboard/>}>
           <Route path='users'  element={<Users/>}>
             <Route path=':id' element={<EditUser/>}/>
+            <Route path='create' element={<CreateUser/>}/>
           </Route>
         </Route>
         <Route path='/home' element={<Home/>}></Route>

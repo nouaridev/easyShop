@@ -2,9 +2,8 @@ import axios from "axios";
 import { motion } from "motion/react";
 import { useEffect, useMemo, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash ,faPen} from "@fortawesome/free-solid-svg-icons";
+import { faTrash ,faPen ,faCirclePlus} from "@fortawesome/free-solid-svg-icons";
 import { Link, Outlet } from "react-router-dom";
-import EditUser from "./EditUser";
 export default function Users() {
   const [users, setUsers] = useState([]);
   const controller = new AbortController();
@@ -70,6 +69,9 @@ export default function Users() {
   return (
     <>
       <div>
+        <div className="create-user">
+          <Link to='create' className='blueBtn create-user'>Create <FontAwesomeIcon icon={faCirclePlus}/> </Link>
+        </div>
         <Outlet context={{users , setUsers}}></Outlet>
         <div className="table-holder">
             <table>
