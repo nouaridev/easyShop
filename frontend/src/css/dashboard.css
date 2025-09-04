@@ -55,28 +55,50 @@
         height: calc(100vh - 100px);
         overflow-y: auto;
     }
-
+    
     /* table */
+        
+        .dashboard .table-holder::-webkit-scrollbar-thumb{
+            background-color: var(--sky-blue-bold);
+            height: 2px;
+            border-radius: 9px;
+            width: 2px;
+        }
+        .dashboard .table-holder::-webkit-scrollbar{
+            position: absolute;
+            left: 0;
+            width: 5px;
+            height: 10px;
+        }
+        .dashboard .table-holder{
+            box-shadow: var(--card-shadow-hover);
+            max-height: calc(100vh - 140px);
+            overflow: auto;
+            border-radius: 4px;
+            background-color:  var(--sky-blue);
+        }
         .dashboard table{
             border-collapse: collapse ;
-            width: 100%;
             table-layout: fixed;
             text-align: center ;
+            width: 100%;
             
+            background-color: white;
         }
         .dashboard table thead{
             background-color: var(--sky-blue-bold);
             color: #eee ;
+            position: sticky;
+            top: 0;
         }
         .dashboard table thead th{
-            border: 1px solid var(--sky-blue-light);
             font-weight: bold;
         }
         .dashboard table tr{
             border-bottom: 1px solid var(--sky-blue-light) ; 
           
         }   
-        .dashboard table tr:hover {
+        .dashboard table tr:not(.thead):hover {
             background-color: var(--sky-blue-light);
         }
         

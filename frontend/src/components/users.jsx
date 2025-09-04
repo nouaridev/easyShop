@@ -71,18 +71,20 @@ export default function Users() {
     <>
       <div>
         <Outlet context={{users , setUsers}}></Outlet>
-        <table>
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>User</th>
-              <th>email</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>{usersjsx}</tbody>
-        </table>
-      </div>
+        <div className="table-holder">
+            <table>
+              <thead>
+                <tr className="thead">
+                  <th>Id</th>
+                  <th>User</th>
+                  <th>email</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>{usersjsx}</tbody>
+            </table>
+          </div>
+        </div>
     </>
   );
 }
