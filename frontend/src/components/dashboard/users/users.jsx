@@ -4,7 +4,10 @@ import { useEffect, useMemo, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash ,faPen ,faCirclePlus} from "@fortawesome/free-solid-svg-icons";
 import { Link, Outlet } from "react-router-dom";
+import Header from "../../Header";
+import { useAuth } from "../../../contexts/tokenContext";
 export default function Users() {
+  const {auth , setAuth} = useAuth();
   const [users, setUsers] = useState([]);
   const controller = new AbortController();
 
@@ -18,7 +21,12 @@ export default function Users() {
 //   state methods : 
     const getUsers = async () => {
       try {
-        let users = await axios.get("http://127.0.0.1:8000/api/user/show", {
+        let users = await axios.get("http://127.0.0.1:8000/api/user/show" ,{
+          headers:{
+            Accept: 'application/json',
+            Authorization: `Bearer ${auth.token}`
+          }
+        }, {
           signal: controller.signal,
         });
         setUsers(users.data);
@@ -29,7 +37,12 @@ export default function Users() {
 
     const delUser = async (user)=>{
         try {
-            let res =await axios.delete(`http://127.0.0.1:8000/api/user/delete/${user}`)
+            let res =await axios.delete(`http://127.0.0.1:8000/api/user/delete/${user}` ,{
+              headers: {
+                Accept: 'application/json' , 
+                Authorization: `Bearer ${auth.token}`
+              }
+            })
             if (res.status == 200){
                 setUsers(users.filter(e=>e.id != user)) ; 
             }
@@ -86,7 +99,6 @@ export default function Users() {
               <tbody>{usersjsx}</tbody>
             </table>
           </div>
-            <div style={{height: '1000px'}}></div>
         </div>
     </>
   );

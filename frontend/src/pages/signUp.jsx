@@ -1,12 +1,13 @@
 import {  useState ,useEffect} from 'react';
 import '../styles.css'
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-
-
-
+import { Link, useNavigate , useLocation} from 'react-router-dom';
+import { useAuth } from '../contexts/tokenContext';
+import Cookies from 'js-cookie'
 
  export default function SignUp(){
+    const navigate = useNavigate() ; 
+
     let [name , setName] = useState('' );
     let [email , setEmail] = useState('' );
     let [pass , setPass] = useState('' );
@@ -21,7 +22,7 @@ import { Link } from 'react-router-dom';
     
 
 
-
+    const {auth , setAuth} = useAuth() ; 
     const submit = async(e)=>{
         setfirstSubmit(true)
         e.preventDefault() ; 
@@ -40,9 +41,10 @@ import { Link } from 'react-router-dom';
                 flag: false ,  
                 message: ''
             })
-            if(res.status = 200){
-                localStorage.setItem('token' , res.token)
-                window.location.pathname='/'
+            if(res.status == 200){
+                setAuth({token: res.token, userDetails: res.user}); 
+                Cookies.set('Bearer' ,res.token )
+                navigate('/' ,{replace: true})
             }
         } catch (err) {
             if(err.response.data.message){

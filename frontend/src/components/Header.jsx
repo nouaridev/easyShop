@@ -1,17 +1,24 @@
 import { Link } from "react-router-dom";
-import { useState , useEffect } from "react";
+import { useAuth } from "../contexts/tokenContext";
+import Cookies from 'js-cookie'
+import axios from "axios";
 export default function Header(){
-    let [token , setToken] = useState(null) ;
-    useEffect(()=>{
-        if(window.localStorage.getItem('token')){
-            setToken(window.localStorage.getItem('token'))
-        }
-    },[])
-
+    const {auth ,setAuth} = useAuth();
     const HandleLogOut = (e)=>{
         e.preventDefault();
-        localStorage.removeItem('token')
-        setToken(null)
+        axios.post('http://127.0.0.1:8000/api/logout' , {},{
+            headers:{
+                Authorization: 'Bearer '+auth.token 
+            }
+        }).then(res=>{
+            if(res.status == 200){
+                setAuth(null);
+                Cookies.remove('Bearer') 
+            }
+        }).catch(err=>{
+            
+        })
+    
     }
     return (
         <div className="header">
@@ -21,7 +28,7 @@ export default function Header(){
                 <Link className="link">cart</Link>
             </div>
             <div className="right">
-                {!token ? <><Link to={'/login'}>Login</Link>  <Link to={'/signup'}>SignUp</Link></> : <Link to={'/login'} className="logout" onClick={(e)=>{HandleLogOut(e)}}>logOut</Link>}
+                {(!auth || !auth.token) ? <><Link to={'/login'}>Login</Link>  <Link to={'/signup'}>SignUp</Link><Link to={'/dashboard'}>Dashboard</Link></> : <><Link to={'/login'} className="logout" onClick={(e)=>{HandleLogOut(e)}}>logOut</Link><Link to={'/dashboard'}>Dashboard</Link></>}
             </div>
         </div>
     );

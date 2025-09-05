@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useOutletContext, useParams } from "react-router-dom"
 import FormInput from "../../FormInput";
+import Cookies from 'js-cookie'
 
 export default function CreateUser(){
     let navigate = useNavigate() ;
@@ -28,7 +29,12 @@ export default function CreateUser(){
         }
         try {
             let data = {name ,email ,password: pass , password_confirmation: rPass };
-            let res = await axios.post(`http://127.0.0.1:8000/api/user/create` , data)
+            let res = await axios.post(`http://127.0.0.1:8000/api/user/create` , data, {
+                headers:{
+                    Accept: 'application/json', 
+                    Authorization: 'Bearer ' + Cookies.get("Bearer") 
+                }
+            })
             if(res.status == 200){
                 let newUser = res.data.data.user
                 let userss = users.map(e=>e) ;

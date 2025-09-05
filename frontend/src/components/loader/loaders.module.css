@@ -1,0 +1,40 @@
+:root{
+        --primary-text: rgb(35, 35, 35) ;   
+        --secondary-text: rgb(106, 106, 106); 
+        --card-shadow: 0 0 5px 0px rgba(106, 106, 106, 0.34); 
+        --card-shadow-hover:0 0 10px 0px rgba(106, 106, 106, 0.34); 
+        --sky-blue: rgb(136, 196, 251);
+        --sky-blue-bold: rgb(86, 173, 255);
+        --sky-blue-light: rgb(198, 224, 251);
+        --sky-blue-lighter-bg: rgba(214, 229, 245, 0.119);
+        --red-error: rgb(245, 83, 83); 
+}
+.loaderHolder{
+    background-color: var(--sky-blue-lighter);
+    width: 100vw;
+    height: 100vh;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.loader{
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--sky-blue-light);   /* base ring */
+    border-top: 4px solid var(--sky-blue-bold); /* highlight */
+    border-radius: 50%;
+    
+
+    animation: rotate .7s linear 0s infinite;
+}
+
+@keyframes rotate {
+    from{
+        transform: rotateZ(0deg);
+    }
+    to{
+        transform: rotateZ(360deg);
+    }
+}

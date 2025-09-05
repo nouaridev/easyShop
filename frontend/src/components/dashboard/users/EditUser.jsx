@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useOutletContext, useParams } from "react-router-dom"
 import FormInput from "../../FormInput";
-
+import Cookies from 'js-cookie'
 export default function EditUser(){
     let navigate = useNavigate() ;
     
@@ -26,7 +26,11 @@ export default function EditUser(){
 
     useEffect(() => {
         // fetch user from API
-        axios.get(`http://127.0.0.1:8000/api/user/showbyid/${id}`)
+        axios.get(`http://127.0.0.1:8000/api/user/showbyid/${id}`,{
+                headers:{
+                    Authorization: 'Bearer ' + Cookies.get("Bearer") 
+                }
+        })
         .then(res => {
             setUser(res.data[0])
         })
@@ -49,7 +53,12 @@ export default function EditUser(){
         }
         try {
             let data = {name ,email ,password: pass , password_confirmation: rPass };
-            let res = await axios.post(`http://127.0.0.1:8000/api/user/update/${id}` , data)
+            let res = await axios.post(`http://127.0.0.1:8000/api/user/update/${id}` , data ,{
+                headers:{
+                    Accept: 'application/json', 
+                    Authorization: 'Bearer ' + Cookies.get("Bearer") 
+                }
+            })
             if(res.status == 200){
                 let newUser = {...user , email , name }
                 setUsers(users.map(e=>{return e.id==id?newUser:e})) ; 

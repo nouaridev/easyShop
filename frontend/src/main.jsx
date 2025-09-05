@@ -4,9 +4,13 @@ import { BrowserRouter } from 'react-router-dom'
 import './styles.css'
 import './css/dashboard.css'
 import App from './App.jsx'
-
+// contexts: 
+import AuthProvider from './contexts/tokenContext'
+ 
 createRoot(document.getElementById('root')).render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <AuthProvider>
+       <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </AuthProvider>
 )

@@ -31,7 +31,7 @@ class AuthController extends Controller
         $user = User::where('id', $request->id)->update([
             'name' => $request->name,
             'email' => $request->email,
-            'password' =>Hash::make($request->password),
+            'password' => Hash::make($request->password)
         ]);
         return $this->sucess([
             'user' => $user,
@@ -71,6 +71,18 @@ class AuthController extends Controller
     }
     public function logout()
     {
-        return response()->json('This is my logout');
+        Auth::user()->currentAccessToken()->delete();
+        return $this->sucess([
+            'message' => 'You Have Been Succesfully Logged Out'
+        ]);
+    }
+    public function refresh(Request $request)
+    {
+        $user = $request->user();
+        $user->tokens()->delete();
+        return response()->json([
+            'user' => $user,
+            'token' => $user->createToken('Api Of ' . $user->name)->plainTextToken
+        ]);
     }
 }
